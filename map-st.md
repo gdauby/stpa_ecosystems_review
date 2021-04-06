@@ -1,26 +1,17 @@
----
-title: "Readme"
-author: "Gilles Dauby"
-date: "2021-04-06"
-output: 
-  html_document:
-    keep_md: true
----
+This page aims to provide ressources used and produced in the chapter
+**“Typification, distribution and biodiversity of terrestrial ecosystems
+in the Gulf of Guinea Oceanic Islands”** of the book *“Biodiversity of
+the Gulf of Guinea Oceanic Islands: Science and Conservation”*.
 
+For an interactive exploration of the proposed synthetic ecosystem
+classification of Sao Tomé & Principe, click on the following link:
+<https://gdauby.shinyapps.io/stpa_classification/>.
 
+Below, you will find codes to produce an interactive map in R. Make sure
+you download all the data in the data directory, or clone the github
+repository locally.
 
-This page aims to provide ressources used and produced in the chapter __"Typification, distribution and biodiversity of terrestrial ecosystems in the Gulf of Guinea Oceanic Islands"__ of the book *"Biodiversity of the Gulf of Guinea Oceanic Islands: Science and Conservation"*.
-   
-For an interactive exploration of the proposed synthetic ecosystem classification of Sao Tomé & Principe, click on the following link:
-[https://gdauby.shinyapps.io/stpa_classification/](https://gdauby.shinyapps.io/stpa_classification/).
-
-
-  
-Below, you will find codes to produce an interactive map in R.
-Make sure you download all the data in the data directory, or clone the github repository locally.
-
-
-```r
+``` r
 ### needed packages, make sure you use a recent R version (>= 4.x) 
 
 library(sf)
@@ -28,8 +19,7 @@ library(tidyverse)
 library(leaflet)
 ```
 
-
-```r
+``` r
 inland_upland_montane <- st_read("./data/sao_tome/inland_upland_montane.shp")
 inland_upland_submontane <- st_read("./data/sao_tome/inland_upland_submontane.shp")
 inland_dry_north <- st_read("./data/sao_tome/inland_dry_north.shp")
@@ -41,9 +31,7 @@ all_shores_eco <-
   mutate(type = replace(type, grepl("mangrove_", type), "mangrove"))
 ```
 
-
-
-```r
+``` r
 mytext_shores <- paste(all_shores_eco$type,
   sep="") %>%
   lapply(htmltools::HTML)
@@ -195,8 +183,3 @@ all_ecosystems <-
     options = layersControlOptions(collapsed = FALSE)
   )
 ```
-
-
-
-
-
