@@ -1,15 +1,13 @@
 ---
 title: "Readme"
 author: "Gilles Dauby"
-date: "`r Sys.Date()`"
+date: "2021-04-06"
 output: 
   html_document:
     keep_md: true
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 This page aims to provide ressources used and produced in the chapter __"Typification, distribution and biodiversity of terrestrial ecosystems in the Gulf of Guinea Oceanic Islands"__ of the book *"Biodiversity of the Gulf of Guinea Oceanic Islands: Science and Conservation"*.
    
@@ -21,21 +19,17 @@ For an interactive exploration of the proposed synthetic ecosystem classificatio
 Below, you will find codes to produce an interactive map in R.
 Make sure you download all the data in the data directory, or clone the github repository locally.
 
-```{r packages, message=F, warning=F}
 
+```r
 ### needed packages, make sure you use a recent R version (>= 4.x) 
 
 library(sf)
 library(tidyverse)
 library(leaflet)
-
-
-
 ```
 
-```{r load-shapefiles, message=F, warning=F, eval=F}
 
-
+```r
 inland_upland_montane <- st_read("./data/sao_tome/inland_upland_montane.shp")
 inland_upland_submontane <- st_read("./data/sao_tome/inland_upland_submontane.shp")
 inland_dry_north <- st_read("./data/sao_tome/inland_dry_north.shp")
@@ -45,13 +39,11 @@ all_shores_eco <-
   all_shores_eco %>% 
   mutate(type = replace(type, grepl("Mangrove", type), "mangrove")) %>% 
   mutate(type = replace(type, grepl("mangrove_", type), "mangrove"))
-
 ```
 
 
-```{r leaflet-map, message=F, warning=F, eval=F}
 
-
+```r
 mytext_shores <- paste(all_shores_eco$type,
   sep="") %>%
   lapply(htmltools::HTML)
@@ -202,9 +194,6 @@ all_ecosystems <-
                       "Lowland moist and wet forests"),
     options = layersControlOptions(collapsed = FALSE)
   )
-
-
-
 ```
 
 
